@@ -1,0 +1,13 @@
+applications:
+  - name: oauth2-provider
+    memory: 512M
+    instances: 1
+    health-check-type: http
+    health-check-http-endpoint: /actuator/health
+    path: target/oauth2-provider.jar
+    services:
+      - mongodb
+      - metrics
+    env:
+      TZ: Asia/Tokyo
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.0.+}, memory_calculator: { stack_threads: 4 }}'
